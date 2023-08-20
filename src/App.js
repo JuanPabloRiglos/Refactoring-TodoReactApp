@@ -5,39 +5,46 @@ import {TodoItem} from './modules/TodoItem';
 import {BtnCreate} from './modules/BtnCreate';
 import './App.css';
 import React from 'react'
-//-- si se importa json, borrarlo
+//-- si se importa json automaticamente, borrarlo
 
+// seteo de localStorage como un react hook 
 
-// const defaultTodos= [{text: 'hacerer la comidita', completed: true },{text:'comer la comidita', completed: false},{text: 'limpiar lo de la comidita', completed: false},{text: 'Digerir la comidita', completed: false},{text: 'Defecar la comidita', completed: true}, {text: 'Comer de nuevo', completed: false}];
-// localStorage.setItem('toDos_v1', json.stringify(defaultTodos))
+//hook siempre arranca con "use"
 
-
-function App() { 
-  let toDoInLs = localStorage.getItem('toDos_v1');
-  if(! toDoInLs){
-    toDoInLs = [];
-    localStorage.setItem('toDos_v1',JSON.stringify([]))
+function useLocalStorage(param , initialValue){
+  let inLocalStorage = localStorage.getItem(param);
+  let itemsInLs;
+  if(! inLocalStorage){
+    itemsInLs = [];
+    localStorage.setItem(param , JSON.stringify(initialValue))
   } else{
-    toDoInLs = JSON.parse(localStorage.getItem('toDos_v1'))
+    itemsInLs = JSON.parse(localStorage.getItem(param))
   };
   console.log('esto de abajo es Ls')
   console.log(localStorage.getItem('toDos_v1'))
   console.log('esto de abajo es lsParseado')
-  console.log(toDoInLs)
+  console.log(itemsInLs);
 
+  const [item , setItem]= React.useState(itemsInLs)
 //seteo Local Storage, tiene que estar sincronizado con el estado de React.
-  //-------------------------
-  const [toDo , setToDo] = React.useState(toDoInLs);
+  function saveAll(newItem){
+  const readyToLS = JSON.stringify(newItem);
+  localStorage.setItem(param, readyToLS);
+  setItem(newItem);
+};
+return [item , saveAll];
+}
+
+
+
+function App() { 
+  const [toDo , saveAll] = useLocalStorage('toDos_v1', []);// le paso los parametros que necesita el useLocalStorage, esto remplaza al react.usestate pot un hook a mano
   let completed = toDo.filter(todo => todo.completed);
   let completedCount = completed.length;
   let totalTodos = toDo.length;
   //impotante, setea el estado (React)
   //-------------------------
-function saveAll(newArray){
-  const readyToLS = JSON.stringify(newArray);
-  localStorage.setItem('toDos_v1', readyToLS);
-  setToDo(newArray)
-};
+
   //-------------------------
 
   const [searchValue , setSearchvalue] = React.useState('');
@@ -81,3 +88,7 @@ function onDeleted(text){
     </React.Fragment>
   );}
 export default App;
+
+
+// const defaultTodos= [{text: 'hacerer la comidita', completed: true },{text:'comer la comidita', completed: false},{text: 'limpiar lo de la comidita', completed: false},{text: 'Digerir la comidita', completed: false},{text: 'Defecar la comidita', completed: true}, {text: 'Comer de nuevo', completed: false}];
+// localStorage.setItem('toDos_v1', json.stringify(defaultTodos))
