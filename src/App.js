@@ -1,8 +1,8 @@
-import {TodoCounter} from './modules/TodoCounter';
-import {TodoSearch} from './modules/TodoSearch';
-import {TodoList} from './modules/TodoList';
-import {TodoItem} from './modules/TodoItem';
-import {BtnCreate} from './modules/BtnCreate';
+import {TodoCounter} from './modules/TodoCounter/index';
+import {TodoSearch} from './modules/TodoSearch/index';
+import {TodoList} from './modules/TodoList/index';
+import {TodoItem} from './modules/TodoItem/index';
+import {BtnCreate} from './modules/BtnCreate/index';
 import './App.css';
 import React from 'react'
 //-- si se importa json automaticamente, borrarlo
