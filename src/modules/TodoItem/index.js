@@ -1,6 +1,6 @@
 import './TodoItem.css';
-import {CheckedIcon} from '../IconChecked';
-import {DeleteIcon} from '../IconDelete'
+import {CheckedIcon} from './IconChecked';
+import {DeleteIcon} from './IconDelete'
 import React from 'react';
 function TodoItem(props){
     // {text, completed} =========>> tambuen puedo destructurar las props

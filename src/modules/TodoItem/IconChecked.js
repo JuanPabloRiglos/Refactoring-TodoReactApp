@@ -1,4 +1,4 @@
-import {BasamentIcon} from './BasamentIcons/index.js'
+import {BasamentIcon} from './BasamentIcon.js'
 
 function CheckedIcon({completed , onCompleted}){
     return(
