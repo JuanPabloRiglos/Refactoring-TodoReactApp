@@ -1,8 +1,10 @@
 import './CreateTodoBtn.css' 
-function  BtnCreate(){
+
+function  BtnCreate({setOpoenModal, modalState}){
+    console.log(modalState)
     return(
         <button className="CreateTodoButton"
-        onClick={() => {console.log('creaste una tarea')}}>+</button>
+        onClick={() => {setOpoenModal(state => ! state) ;console.log(modalState)}}>+</button>
     )
 };
 

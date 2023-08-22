@@ -42,3 +42,6 @@ function useLocalStorage(param , initialValue){
   }
 
   export {useLocalStorage};
+
+//   const defaultTodos= [{text: 'hacerer la comidita', completed: true },{text:'comer la comidita', completed: false},{text: 'limpiar lo de la comidita', completed: false},{text: 'Digerir la comidita', completed: false},{text: 'Defecar la comidita', completed: true}, {text: 'Comer de nuevo', completed: false}];
+// localStorage.setItem('toDos_v1', json.stringify(defaultTodos))
