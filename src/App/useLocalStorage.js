@@ -20,10 +20,7 @@ function useLocalStorage(param , initialValue){
       itemsInLs = JSON.parse(localStorage.getItem(param))
       setItem(itemsInLs)
     };
-    console.log('esto de abajo es Ls')
-    console.log(localStorage.getItem('toDos_v1'))
-    console.log('esto de abajo es lsParseado')
-    console.log(itemsInLs);
+
     setLoading(false)
   }catch(error){
     setLoading(false)

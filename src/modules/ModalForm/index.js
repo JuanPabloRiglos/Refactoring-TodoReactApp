@@ -1,10 +1,10 @@
 import React from "react";
 import './ModalForm.css' ;
-import { TodoContext } from "../TodoContext";
 
 
-function ModalForm(){
-const {addTodo , setOpoenModal} = React.useContext(TodoContext)
+
+function ModalForm( {addTodo , setOpoenModal}){
+
 
     const [newToDoValue , setNewTodoValue] = React.useState('')
 

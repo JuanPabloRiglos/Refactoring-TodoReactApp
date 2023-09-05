@@ -1,14 +1,15 @@
 
-import { TodoContext } from '../TodoContext';
+
 import './TodoSearch.css';
 import React from 'react';
 
-function TodoSearch(){
+function TodoSearch({setSearchvalue , loading}){
 //    {searchValue , setSearchvalue}
-const {  setSearchvalue} = React.useContext(TodoContext)
+// const {  setSearchvalue} = React.useContext(TodoContext) FUERA EN REFACTOREO-
     return(
         <input placeholder='Create your task'className="TodoSearch"
-        onChange={(event)=>  {console.log('escribiste '); console.log(event.target.value) 
+        disabled={loading}
+        onChange={(event)=>  {
     setSearchvalue(event.target.value)}}/>
     )
 };

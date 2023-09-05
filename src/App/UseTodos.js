@@ -1,9 +1,10 @@
 import React from 'react';
 import { useLocalStorage } from './useLocalStorage';
 
- const TodoContext = React.createContext();
 
- function TodoProvider({children}){
+
+ function useTodos(){
+  // en refactoreo, elmine el uso de R.Context, y la funcion todoProvider, en su lugar la convertimos en el HOOK useTodo
 
     const { item : toDo , saveAll , loading , error} = useLocalStorage('toDos_v1', []);// le paso los parametros que necesita el useLocalStorage, esto remplaza al react.usestate pot un hook a mano
   let completed = toDo.filter(todo => todo.completed);
@@ -49,7 +50,7 @@ function onDeleted(text){
 
 
     return(
-        <TodoContext.Provider value={{
+        {
              totalTodos  ,
             completedCount ,
             searchValue ,
@@ -62,10 +63,8 @@ function onDeleted(text){
             setOpoenModal,
             modalState, 
             addTodo
-            }}>
-            {children}
-        </TodoContext.Provider>
+            }
     )
  }
 
- export { TodoContext , TodoProvider}
+ export { useTodos}
