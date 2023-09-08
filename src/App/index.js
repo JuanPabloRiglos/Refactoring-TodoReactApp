@@ -12,11 +12,12 @@ import {ErrorState} from '../modules/ErrorState'
 import {EmptyState} from '../modules/EmptyState'
 import { Modal } from '../modules/modal';
 import { ModalForm } from '../modules/ModalForm/';
+import { ChangeAlertWhitStorageListener } from '../modules/ChangeAlert/Index';
 import './App.css';
 
 function App() { 
   
-  const {loading , error , result , onDeleted , onCompleted , setOpoenModal, modalState, completedCount , totalTodos , searchValue, setSearchvalue, addTodo }= useTodos()
+  const {loading , error , result , onDeleted , onCompleted , setOpoenModal, modalState, completedCount , totalTodos , searchValue, setSearchvalue, addTodo , sincronizeTodo}= useTodos()
  
   return(
     <>
@@ -60,6 +61,8 @@ function App() {
         </Modal>  
          : console.log('cierra modal')
     }
+    <ChangeAlertWhitStorageListener 
+    sincronize={sincronizeTodo}/>
     </>
     )
 

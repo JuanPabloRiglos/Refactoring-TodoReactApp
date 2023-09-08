@@ -7,6 +7,7 @@ function useLocalStorage(param , initialValue){
    // si falla, poner esto en el React.usestate de arrba  itemsInLs;
    const [loading , setLoading] = React.useState(true);
    const [error , setError] = React.useState(false) 
+   const [sincronizedItem , setSincronizedItem]= React.useState(true)
 
     React.useEffect(()=>{ 
        setTimeout(()=>{
@@ -22,12 +23,13 @@ function useLocalStorage(param , initialValue){
     };
 
     setLoading(false)
+    setSincronizedItem(true)
   }catch(error){
     setLoading(false)
     setError(true)
   }
 },2500)
-}, []);
+}, [sincronizedItem]);
  
   //seteo Local Storage, tiene que estar sincronizado con el estado de React.
     function saveAll(newItem){
@@ -35,7 +37,14 @@ function useLocalStorage(param , initialValue){
     localStorage.setItem(param, readyToLS);
     setItem(newItem);
   };
-  return {item , saveAll , loading , error};
+
+  // funcion para sncronizar estados cuando hay mas de una version de al app funcionando
+  const sincronizeItem =() =>{
+    setLoading(true);
+    setSincronizedItem(false)
+  }
+  //RETURN
+  return {item , saveAll , loading , error , sincronizeItem};
   }
 
   export {useLocalStorage};
